@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yun Zhang | Personal Homepage</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #2b5ea7;
+      --text:   #1a1a1a;
+      --muted:  #555;
+      --light:  #f5f6f8;
+      --border: #e0e3ea;
+      --max-w:  860px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 16px;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.75;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+    nav .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    nav .brand { font-weight: 700; font-size: 1rem; letter-spacing: .03em; color: var(--text); font-family: sans-serif; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul li a {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    nav ul li a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── Layout ── */
+    .page { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px; }
+
+    /* ── Hero ── */
+    #home {
+      display: flex;
+      align-items: flex-start;
+      gap: 36px;
+      padding: 60px 0 50px;
+      border-bottom: 1px solid var(--border);
+    }
+    #home .avatar {
+      width: 110px;
+      height: 140px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    #home .bio h1 {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin-bottom: 6px;
+    }
+    #home .bio .position {
+      font-family: sans-serif;
+      font-size: .95rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    #home .bio p {
+      font-size: .95rem;
+      color: #333;
+      max-width: 560px;
+      margin-bottom: 16px;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: sans-serif;
+      font-size: .82rem;
+    }
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .contact-links a:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+    /* ── Section headings ── */
+    .section { padding: 48px 0 0; }
+    .section-title {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-weight: 700;
+      color: var(--muted);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px;
+      margin-bottom: 28px;
+      display: inline-block;
+    }
+
+    /* ── Education ── */
+    .edu-item { margin-bottom: 24px; }
+    .edu-item .school {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .edu-item .degree {
+      color: var(--muted);
+      font-size: .9rem;
+      font-family: sans-serif;
+    }
+    .edu-item .meta {
+      font-size: .82rem;
+      color: var(--muted);
+      font-family: sans-serif;
+      margin-top: 2px;
+    }
+    .edu-item ul {
+      margin: 6px 0 0 20px;
+      font-size: .88rem;
+      color: #444;
+    }
+
+    /* ── Publications ── */
+    .pub-item {
+      margin-bottom: 22px;
+      padding-left: 16px;
+      border-left: 3px solid var(--accent);
+    }
+    .pub-item .pub-title {
+      font-weight: 700;
+      font-size: .95rem;
+      line-height: 1.45;
+    }
+    .pub-item .pub-authors {
+      font-size: .85rem;
+      color: var(--muted);
+      font-family: sans-serif;
+      margin-top: 3px;
+    }
+    .pub-item .pub-venue {
+      font-size: .85rem;
+      color: #444;
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-family: sans-serif;
+      background: #e8f0fb;
+      color: var(--accent);
+      border-radius: 3px;
+      padding: 1px 7px;
+      margin-left: 6px;
+      vertical-align: middle;
+      font-weight: 600;
+    }
+    .tag.cn { background: #fef3e2; color: #b45309; }
+
+    /* ── Working Papers ── */
+    .wp-item {
+      margin-bottom: 14px;
+      font-size: .92rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .wp-item::before {
+      content: "–";
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── RA / TA ── */
+    .ra-item {
+      margin-bottom: 16px;
+      font-size: .92rem;
+    }
+    .ra-item .role { font-weight: 700; }
+    .ra-item .inst { color: var(--muted); font-family: sans-serif; font-size: .84rem; }
+
+    /* ── Teaching ── */
+    .teach-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .teach-list span {
+      font-size: .85rem;
+      font-family: sans-serif;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 14px;
+      color: var(--text);
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 64px;
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+      text-align: center;
+      font-family: sans-serif;
+      font-size: .78rem;
+      color: #aaa;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      #home { flex-direction: column; align-items: center; text-align: center; }
+      .contact-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <span class="brand">Yun Zhang</span>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#publications">Research</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Page Wrapper ── -->
+<div class="page">
+
+  <!-- ── Hero / Bio ── -->
+  <section id="home">
+    <div class="avatar">👤</div>
+    <div class="bio">
+      <h1>Yun Zhang</h1>
+      <p class="position">
+        PhD Student · Agricultural Economics &amp; Management<br>
+        School of Agricultural Economics and Rural Development<br>
+        <strong>Renmin University of China</strong>
+      </p>
+      <p>
+        My research focuses on agricultural economics, environmental economics,
+        rural development, and labor economics. I am currently working on topics
+        including air pollution and food prices, land reform and income mobility,
+        and the intersection of culture and subjective well-being.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:yun_zhang@ruc.edu.cn">✉ yun_zhang@ruc.edu.cn</a>
+        <a href="#cv">📄 Curriculum Vitae</a>
+        <a href="#publications">📚 Publications</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Publications ── -->
+  <section id="publications" class="section">
+    <div class="section-title">Publications</div>
+
+    <div class="pub-item">
+      <div class="pub-title">
+        Inter-regional Compensation Mechanism Analysis of Pig Breeding Pollution in China
+      </div>
+      <div class="pub-authors">
+        <strong>Yun Zhang</strong>, Yuying Yang, Fang Wang
+      </div>
+      <div class="pub-venue">
+        <em>Heilongjiang Animal Science and Veterinary Medicine</em>, 2024 (14): 9–17.
+        <span class="tag cn">Chinese</span>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">
+        Calculation, Elasticity and Regional Differences of Agricultural Greenhouse Gas Shadow Prices
+      </div>
+      <div class="pub-authors">
+        Yanqiu He, Siyu Zhu, <strong>Yun Zhang</strong>, Yanchi Zhou
+      </div>
+      <div class="pub-venue">
+        <em>Science of The Total Environment</em>, 790(2): 148061, 2021.
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">
+        Household Groups' Land Use Decisions Investigation Based on Perspective of Livelihood Heterogeneity in Sichuan Province, China
+      </div>
+      <div class="pub-authors">
+        Hong Tang, Liu Jian, Xiaowen Dai, <strong>Yun Zhang</strong>, Wendai He, Qi Yin, Feng Huang, Ruiping Ran, Yunqiang Liu
+      </div>
+      <div class="pub-venue">
+        <em>International Journal of Environmental Research and Public Health</em>, 19(15): 9485, 2022.
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">
+        Labor-intensive Industries in Informal Employment Relationship Maintenance
+      </div>
+      <div class="pub-authors">
+        <strong>Yun Zhang</strong>, Fang Wang
+      </div>
+      <div class="pub-venue">
+        <em>Journal of Cooperation in Economy and Technology</em>, 27(21): 77–79, 2021.
+        <span class="tag cn">Chinese</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Working Papers ── -->
+  <section id="working-papers" class="section">
+    <div class="section-title">Working Papers</div>
+
+    <div class="wp-item">
+      <span>
+        <strong>Yun Zhang</strong> and Xiaodong Chen. (2024)
+        "Air Pollution and Vegetable Prices: Evidence from Wholesale Market in China."
+      </span>
+    </div>
+    <div class="wp-item">
+      <span>
+        <strong>Yun Zhang</strong> and Huanguang Qiu. (2024)
+        "Culture and Happiness."
+      </span>
+    </div>
+    <div class="wp-item">
+      <span>
+        <strong>Yun Zhang</strong>, Jian Liu and Huanguang Qiu. (2024)
+        "Land Reform and Income Mobility."
+      </span>
+    </div>
+    <div class="wp-item">
+      <span>
+        Zhichao Yin, Deyang Li and <strong>Yun Zhang</strong>. (2023)
+        "Do Productive Agricultural Services Promote Green Development: Evidence from China."
+        <span class="tag cn">Chinese</span>
+      </span>
+    </div>
+    <div class="wp-item">
+      <span>
+        Deyang Li and <strong>Yun Zhang</strong>. (2023)
+        "Digital Finance and Upward Mobility: Evidence from Rural Low-Income Households."
+        <span class="tag cn">Chinese</span>
+      </span>
+    </div>
+    <div class="wp-item">
+      <span>
+        Luo Xin and <strong>Yun Zhang</strong>. (2023)
+        "Medical Care and Labor Migration in China: Evidence from Resident Basic Medical Insurance Reform."
+        <span class="tag cn">Chinese</span>
+      </span>
+    </div>
+    <div class="wp-item">
+      <span>
+        Deyang Li and <strong>Yun Zhang</strong>. (2023)
+        "Medical Insurance Reform and Health: Evidence from Rural China."
+        <span class="tag cn">Chinese</span>
+      </span>
+    </div>
+    <div class="wp-item">
+      <span>
+        <strong>Yun Zhang</strong> and Xudong Han. (2022)
+        "Village-Enterprise Integration and Village Endogenous Development: A Case Study Based on the Return of Talented Cadres to the Hometown."
+        <span class="tag cn">Chinese</span>
+      </span>
+    </div>
+  </section>
+
+  <!-- ── CV ── -->
+  <section id="cv" class="section">
+    <div class="section-title">Curriculum Vitae</div>
+
+    <!-- Education -->
+    <h3 style="font-family:sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:16px;">Education</h3>
+
+    <div class="edu-item">
+      <div class="school">Renmin University of China</div>
+      <div class="degree">Master &amp; PhD in Agricultural Economics and Management</div>
+      <div class="meta">School of Agricultural Economics and Rural Development · 2022 – present · GPA: 3.96 / 4.00</div>
+      <ul>
+        <li>Supervisors: Xinkai Zhu and Huangguang Qiu</li>
+      </ul>
+    </div>
+
+    <div class="edu-item">
+      <div class="school">Sichuan Agricultural University</div>
+      <div class="degree">BA in Agricultural and Forestry Economics and Management</div>
+      <div class="meta">College of Management · Graduated 2022 · Ranking: 1 / 90</div>
+      <ul>
+        <li>Supervisor: Fang Wang</li>
+      </ul>
+    </div>
+
+    <!-- Research Assistant -->
+    <h3 style="font-family:sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:28px 0 16px;">Research Experience</h3>
+
+    <div class="ra-item">
+      <div class="role">Research Assistant</div>
+      <div style="font-size:.9rem;margin-top:2px;">Comparative Study of Food Security among Countries</div>
+      <div class="inst">National Development and Reform Commission · 2022 – 2023</div>
+    </div>
+
+    <div class="ra-item">
+      <div class="role">Research Assistant</div>
+      <div style="font-size:.9rem;margin-top:2px;">Follow-up Evaluation of Rural Revitalization</div>
+      <div class="inst">China Rural Revitalization Research Institute · 2022 – 2024</div>
+    </div>
+
+    <!-- Teaching Assistant -->
+    <h3 style="font-family:sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:28px 0 12px;">Teaching Assistant</h3>
+    <div class="teach-list">
+      <span>Principles of Management</span>
+      <span>International Economics</span>
+      <span>Agricultural Economics</span>
+      <span>Technical Economics</span>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section id="contact" class="section">
+    <div class="section-title">Contact</div>
+    <p style="font-family:sans-serif;font-size:.92rem;color:var(--muted);">
+      School of Agricultural Economics and Rural Development<br>
+      Renmin University of China, Beijing, China<br><br>
+      ✉ <a href="mailto:yun_zhang@ruc.edu.cn">yun_zhang@ruc.edu.cn</a>
+    </p>
+  </section>
+
+</div><!-- /page -->
+
+<!-- ── Footer ── -->
+<footer>
+  <p>© 2026 Yun Zhang · Built with GitHub Pages</p>
+</footer>
+
+</body>
+</html>
